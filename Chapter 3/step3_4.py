@@ -26,3 +26,10 @@ else:
 
 #3.4.7
 
+import requests, re, sys
+
+lines = input()
+pattern = r"<a [^>]*\s*href=['\"](?!\.\./)(?:\w+://)?([\w\.-]+)(?:.*)['\"]"
+
+res = requests.get(lines)
+print("\n".join(sorted(list(set(re.findall(pattern, res.text))))))

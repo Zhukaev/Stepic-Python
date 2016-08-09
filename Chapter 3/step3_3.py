@@ -75,7 +75,22 @@ for line in sys.stdin:
 
 #3.3.14
 
+import sys
+import re
 
+for line in sys.stdin:
+    line = line.rstrip()
+    list = re.split(r'\W+', line)
+
+    if len(list) is not None:
+        for word in list:
+            if len(word) >= 2:
+                rWord = word[1] + word[0]
+                if len(list) >= 3:
+                    rWord += word[2:]
+                pattern = r'\b' + word + r'\b'
+                line = re.sub(pattern, rWord, line)
+    print(line)
 
 #3.3.15
 
